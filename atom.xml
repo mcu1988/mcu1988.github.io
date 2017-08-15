@@ -4,9 +4,9 @@
   <subtitle>Pull up by bootstraps!</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://mcu1988.github.io/"/>
   <updated>2017-07-31T11:43:01.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://mcu1988.github.io/</id>
   
   <author>
     <name>JasonXu</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Test</title>
-    <link href="http://yoursite.com/2017/07/31/Test/"/>
-    <id>http://yoursite.com/2017/07/31/Test/</id>
+    <link href="https://mcu1988.github.io/2017/07/31/Test/undefined-title/"/>
+    <id>https://mcu1988.github.io/2017/07/31/Test/undefined-title/</id>
     <published>2017-07-31T11:43:01.000Z</published>
     <updated>2017-07-31T11:43:01.000Z</updated>
     
@@ -31,15 +31,15 @@
   
   <entry>
     <title></title>
-    <link href="http://yoursite.com/2017/07/31/hello-world/"/>
-    <id>http://yoursite.com/2017/07/31/hello-world/</id>
+    <link href="https://mcu1988.github.io/2017/07/31/hello-world/undefined-title/"/>
+    <id>https://mcu1988.github.io/2017/07/31/hello-world/undefined-title/</id>
     <published>2017-07-31T10:51:58.000Z</published>
-    <updated>2017-07-31T12:06:57.000Z</updated>
+    <updated>2017-08-15T02:16:35.000Z</updated>
     
     <content type="html"><![CDATA[<hr>
 <h2 id="懒人日记"><a href="#懒人日记" class="headerlink" title="懒人日记"></a><blockquote class="blockquote-center">懒人日记</blockquote></h2><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的结构和功能的数学模型或计算模型，用于对函数进行估计或近似。最著名的是1986年由Rumelhart和McCelland提出的BP神经网络模型。</p>
+<h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p>神经网络的基本结构如图1所示，包含3层结构：输入层、隐含层、输出层。输入层输入特征变量，输出层是要进行分类或者回归的值。<br><a href="../images/图片1.png">神经网络结构</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
