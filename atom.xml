@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mcu1988.github.io/"/>
-  <updated>2017-08-15T14:51:58.000Z</updated>
+  <updated>2017-08-16T16:17:10.000Z</updated>
   <id>https://mcu1988.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://mcu1988.github.io/2017/07/31/Test/undefined-title/"/>
     <id>https://mcu1988.github.io/2017/07/31/Test/undefined-title/</id>
     <published>2017-07-31T11:43:01.000Z</published>
-    <updated>2017-08-15T14:51:58.000Z</updated>
+    <updated>2017-08-16T16:17:10.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="dfd"><a href="#dfd" class="headerlink" title="dfd"></a>dfd</h1><p><img src="http://note.youdao.com/favicon.ico" alt="image"></p>
 <p>```math<br>E = mc^2</p>
@@ -41,26 +41,73 @@
     <link href="https://mcu1988.github.io/2016/12/28/hello-world/undefined-title/"/>
     <id>https://mcu1988.github.io/2016/12/28/hello-world/undefined-title/</id>
     <published>2016-12-28T13:01:30.000Z</published>
-    <updated>2017-08-16T10:15:48.000Z</updated>
+    <updated>2017-08-17T05:02:08.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的结构和功能的数学模型或计算模型，用于对函数进行估计或近似。最著名的是1986年由Rumelhart和McCelland提出的BP神经网络模型。</p>
+    <content type="html"><![CDATA[<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello-world"></a>hello-world</h2><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的结构和功能的数学模型或计算模型，用于对函数进行估计或近似。最著名的是1986年由Rumelhart和McCelland提出的BP神经网络模型。</p>
 <h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p>神经网络的基本结构如图1所示，包含3层结构：输入层、隐含层、输出层。输入层输入特征变量，输出层是要进行分类或者回归的值。</p>
 <center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%9B%BE%E7%89%871.png" width="40%" height="25%">图1 神经网络基本结构<br></center>  
 
 
 <p>神经网络每一层由若干个S型神经元构成，每一个S型神经元的结构和感知机相似，参考上一节中感知器的模型结构。它与感知器的不同在于激活函数采用Sigmoid函数，</p>
+<p>.MathJax{outline:0;}</p>
 <p>$$S(x)=\frac{1}{1+{ {e}^{-x} } }$$ </p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<p>该激活函数与感知器中阶跃激活函数的波形类似，如图2所示，这也表明可以用该函数近似代替阶跃函数，其最大的优点在于，它是一个连续可导的函数，这样，神经元的微小的输出变化可以用导数形式近似表达出来：</p>
+<p><img src="http://our9hb3to.bkt.clouddn.com/%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86.jpg" alt="二元函数微分"></p>
+<p>神经网络模型建立过程包含两部：正向传递和反向更新。</p>
+<h2 id="正向传递"><a href="#正向传递" class="headerlink" title="正向传递"></a>正向传递</h2><p>首先随机初始化一组参数_w_和_b_，输入特征数据，将输入层的S函数输出作为隐含层的输入，隐含层的输出在作为输出层的输入。对于二分类问题，如果输出层S函数的输出大于0.5，则认为该样本属于类别1，否则属于类别0。由于最初的参数w和b是随机初始化的，因此，最终的分类结果并不准确。神经网络的最终目的是得到一组合适的_w_和_b_，使得预测结果达到最优，这就需要利用反向更新来进一步调整_w_和_b_。</p>
+<h2 id="反向更新"><a href="#反向更新" class="headerlink" title="反向更新"></a>反向更新</h2><p>反向更新（Back Propagation， BP）的目的是确定一组恰当的参数w和b来使输出达到最优。既然是最优问题，就有对应的目标函数，</p>
+<p>$$C(\omega ,b)=\frac{1}{2n}\sum\limits_{x}^{ {} }{\left| y(x)-a \right|}$$</p>
+<p>其中，_y(x)_ 是网络输出，_a_是实际值。该目标函数表示所有样本预测值和实际值之间差值的平方均值。系数$\frac{1}{2}$ 是为了求导方便而添加上去的，它抵消了2次项求导后的系数2，使得求到后的形式更加简洁。</p>
+<p>我们的目的是使得目标函数最小，而目标函数是参数w和b的函数，因此求解参数w和b就能使得目标函数最小。常用的最优化方法是梯度下降（Gradient Descent）算法。</p>
+<p>什么是梯度？梯度就是函数的一阶导数，负梯度的方向反映着函数值下降最快的方向。下面以一元二次函数讲解。</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E4%B8%80%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%9B%BE%E8%A7%A3.png" width="60%">图2 一元二次函数梯度下降图解<br></center> 
+
+<p>该函数梯度$\nabla=2x$，我们的目的是找到函数最小值，具体做法是对x一小步一小步的更新，每次沿负梯度方向更新x，$x\leftarrow x-\gamma \centerdot \nabla $ ，$\gamma$ 可以理解为学习率。这样x会沿着图3中的方向一步步更新，直到达到最小值。</p>
+<p>回到神经网络的问题上来，应用梯度下降算法，更新_w_和_b_,</p>
+<p>$$     { { {\omega }’}_{k} }=\omega_k-\eta \frac{\partial C}{\partial { \omega_k } }$$</p>
+<p>$${ { b’}_{l} }=b_l-\eta \frac{\partial C}{\partial { b_l } } $$</p>
+<p>接下来对上式进行推导，给出_w_和_b_更新的最终公式。</p>
+<p>先用图3表达变量名称和变量之间的关系。定义式（2）所示的目标函数，该目标函数是预测值和真值距离的平均值。</p>
+<p>式（2）中，n是输入样本个数，实际计算过程中，可视为常数，w和b的反向更新过程忽略n，即单个样本的目标函数如下：</p>
+<p>$$C(\omega ,b) = \frac{1}{2}\sum\limits_j^{} { { { ({y_j} - {a_j}^l)}^2} } $$</p>
+<p>这个公式的实际含义是计算对输出层所以节点输出与目标值之间偏差的平方。<br>下面定义几个符号变量，</p>
+<p>${\omega _{ij} }^l$ :第l-1层第i个节点到第l层第j个节点的连接权重<br>${b_j}^l$: 第l层第j个节点的偏置<br>${z_j}^l$: 第l层第j个节点激活函数的输入<br>${a_j}^l$: 第l层第j个节点激活函数的输出</p>
+<p>各变量代表的含义如图3中所示：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%8F%98%E9%87%8F%E5%9C%A8%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA.png" width="60%">图3 变量在图中的表示<br></center> 
+
+<p>先计算输出层误差：</p>
+<p>$${\delta _j}^l = \frac{ {\partial C} }{ {\partial {z_j}^l} } = \frac{ {\partial C} }{ {\partial {a_j}^l} }\frac{ {\partial {a_j}^l} }{ {\partial {z_j}^l} } = \frac{ {\partial C} }{ {\partial {a_j}^l} }\sigma ‘({z_j}^l)$$</p>
+<p>其中，$\sigma’$ 是激活函数$\sigma $的导数。这个公式表达的含义是目标函数C对输出层激活函数输入${z_j}^l$ 的偏导。该公式是应用链式法则求导，将目标转化为先对S函数输出值求导，再计算S函数输出值对S函数输入的求导。为便于理解，将该过程用图4表达出来。</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E9%93%BE%E5%BC%8F%E6%B1%82%E5%AF%BC%E6%B1%82%E8%A7%A3.png" width="60%">图4 链式求导图解<br></center> 
+
+<p>$$\frac{ {\partial C} }{ {\partial {a_j}^l} }{\text{ = (} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }$$</p>
+<p>激活函数Sigmoid这个导数比较特殊，其导数为：</p>
+<p>$$\sigma ‘(z) = (\frac{1}{ {1 + {e^{ - z} } } })’ = \frac{ { {e^{ - z} } } }{ { { {(1 + {e^{ - z} })}^2} } } = \frac{1}{ {1 + {e^{ - z} } } }(1 - \frac{1}{ {1 + {e^{ - z} } } }) = \sigma (z)(1 - \sigma (z))$$</p>
+<p>式（7），式（8）带入式（6）可得：</p>
+<p>$${\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 - \sigma ({z_j}^l))$$</p>
+<p>公式（9）是输出层的偏差，对于输入层的偏差，尝试先计算通项公式，通过第l+1层的偏差来极端第l层的偏差，这有点类似于计算数列的通项公式的思想。</p>
+<p>$${\delta _j}^l{\text{ = } }\frac{ {\partial C} }{ {\partial {z_j}^l} }{\text{ = } }\sum\limits_k^{} {\frac{ {\partial C} }{ {\partial {z_k}^{l + 1} } } } \frac{ {\partial {z_k}^{l + 1} } }{ {\partial {z_j}^l} }{\text{ = } }\sum\limits_k^{} { {\delta _k}^{l + 1} } \frac{ {\partial {z_k}^{l + 1} } }{ {\partial {z_j}^l} }$$</p>
+<p>该式也是利用链式法则，目标函数对l层S函数输入的求导转化为先对l+1层S函数输入的求导，再计算l+1层S函数输入对l层S函数输入的求导。该过程如图5所示。</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99%E5%9B%BE%E8%A7%A3.png" width="60%">图5 链式法则图解<br></center> 
+
+<p>式（10）中 ${z_k}^{l + 1}$为：</p>
+<p>$${z_k}^{l + 1}=\sum\limits_j^{} {\omega _{j k}^{l + 1} } a_j^l + b_j^{l + 1} = \sum\limits_j^{} {\omega _{j k}^{l + 1} } \sigma ({z_j}^l) + b_j^{l + 1}$$</p>
+<p>$$\frac{ {\partial {z_k}^{l + 1} } }{ {\partial {z_j}^l} }= \omega _{j k}^{l + 1}\sigma ‘({z_j}^l)$$</p>
+<p>式（12）带入式（10）,</p>
+<p>$${\delta _j}^l{\text{ = } }\sum\limits_k^{} {\omega _{j k}^{l + 1}\sigma ‘({z_j}^l){\delta _k}^{l + 1} } $$</p>
+<p>上式表明了由l+1层的误差可以计算得到l层误差，式（9）计算出了输出层的误差，应用公式（13）就可以递推得到隐含层每一层节点上对应的误差。</p>
+<p>我们的目标是反向更新_w_和_b_，目标函数对b的偏导为：</p>
+<p>$$\frac{ {\partial C} }{ {\partial {b_j}^l} } = \frac{ {\partial C} }{ {\partial {z_j}^l} }\frac{ {\partial {z_j}^l} }{ {\partial {b_j}^l} } = \frac{ {\partial C} }{ {\partial {z_j}^l} }{\text{ = } }{\delta _j}^l$$</p>
+<p>目标函数对_w_的偏导为：</p>
+<p>$$\frac{ {\partial C} }{ {\partial {\omega _{k j} }^l} } = \frac{ {\partial C} }{ {\partial {z_j}^l} }\frac{ {\partial {z_j}^l} }{ {\partial {\omega _{k j} }^l} }{\text{ = } }{\delta _j}^l{a_k}^{l - 1}$$</p>
+<p>至此，反向传播过程中参数_w_和_b_的更新公式计算完毕。整理如下：<br>$$\eqalign{<br>&amp; {\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 - \sigma ({z_j}^l))  \cr<br>&amp; {\delta _j}^l{\text{ = } }\sum\limits_k^{} {\omega _{jk}^{l + 1}\sigma ‘({z_j}^l){\delta _k}^{l + 1} }  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j}}^l} }={\delta _j}^l{a_k}^{l - 1}  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j} }^l} }{\text{ = } }{\delta _j}^l{a_k}^{l - 1}<br>\cr} $$</p>
+<p>上式计算出了参数_w_和_b_的偏导，代入式（3）和（4）中即可更新参数_w_和_b_。</p>
+<p>下一片文章我将用一个详细的例子来解释神经网络参数的迭代过程。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的
+      &lt;h2 id=&quot;hello-world&quot;&gt;&lt;a href=&quot;#hello-world&quot; class=&quot;headerlink&quot; title=&quot;hello-world&quot;&gt;&lt;/a&gt;hello-world&lt;/h2&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;head
     
     </summary>
     
