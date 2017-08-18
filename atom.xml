@@ -103,9 +103,9 @@
     <link href="https://mcu1988.github.io/2017/07/31/Test/undefined-title/"/>
     <id>https://mcu1988.github.io/2017/07/31/Test/undefined-title/</id>
     <published>2017-07-31T11:43:01.000Z</published>
-    <updated>2017-08-17T16:55:33.000Z</updated>
+    <updated>2017-08-18T08:11:57.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="dfd"><a href="#dfd" class="headerlink" title="dfd"></a>dfd</h2><p>上一篇文章详细推导了神经网络的原理，这篇文章讨论的是如何将公式以代码的方式实现出来。</p>
+    <content type="html"><![CDATA[<p>上一篇文章详细推导了神经网络的原理，这篇文章讨论的是如何将公式以代码的方式实现出来。</p>
 <p>梯度下降算法更新参数w和b，</p>
 <p><img src="http://our9hb3to.bkt.clouddn.com/%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86.jpg" alt="二元函数微分"></p>
 <p>参数w和b的偏导计算方式为：</p>
@@ -122,44 +122,18 @@
 <p>Python3的代码在这里：</p>
 <p><a href="[Python2 版本代码](https://github.com/mnielsen/neural-networks-and-deep-learning">Python3 版本代码</a></p>
 <p>上面的代码都是从0一步步实现神经网络的，阅读上面代码有助于理解公式转化为代码的详细过程。</p>
-<p>Python的scikit-learn库中自带多层神经网络的函数，因此，实际中，只需调用已有的包就能实现神经网络。下面给出python实现神经网络的示例代码。</p>
-<pre><code>import numpy as np
-from sklearn.datasets import load_iris
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import classification_report,confusion_matrix
-
-
-iris = load_iris() # iris数据集
-n_samples, n_features = iris.data.shape
-labelNum = np.unique(iris.target).shape[0]
-print(&apos;样本数:&apos;,n_samples, &apos;特征数:&apos;,n_features, &apos;类别数:&apos;,labelNum)
-
-X= iris.data # 特征和标签
-y = iris.target
-
-X = StandardScaler().fit_transform(X) # 特征归一化
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)  #训练集和测试机分割
-
-
-MLP = MLPClassifier(hidden_layer_sizes=(n_features,200,labelNum),max_iter=500)  # 训练模型
-MLP.fit(X_train,y_train)
-
-labelPredict = MLP.predict(X_test)  # 预测
-
-print(confusion_matrix(y_test,labelPredict))  # 模糊矩阵
-
-print(classification_report(y_test,labelPredict))
-</code></pre><p>上述过程使用python自带的iris数据集，利用神经网络进行分类预测。模型层数为[4,200,3]，最大迭代次数为500次。神经网络中Dev其它参数为默认参数。</p>
-<pre><code>MLPClassifier(hidden_layer_sizes=(100, ), activation=’relu’, solver=’adam’, alpha=0.0001, batch_size=’auto’, learning_rate=’constant’, learning_rate_init=0.001, power_t=0.5, max_iter=200, shuffle=True, random_state=None, tol=0.0001, verbose=False, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
-</code></pre>]]></content>
+<p>Python的scikit-learn库中自带多层神经网络的函数，因此，实际中，只需调用已有的包就能实现神经网络。下面给出python3实现神经网络的示例代码。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</div><div class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</div><div class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</div><div class="line"><span class="keyword">from</span> sklearn.neural_network <span class="keyword">import</span> MLPClassifier</div><div class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> classification_report,confusion_matrix</div><div class="line"></div><div class="line"><span class="comment"># iris数据集</span></div><div class="line">iris = load_iris()</div><div class="line">n_samples, n_features = iris.data.shape</div><div class="line">labelNum = np.unique(iris.target).shape[<span class="number">0</span>]</div><div class="line"><span class="built_in">print</span>(<span class="string">'样本数:'</span>,n_samples, <span class="string">'特征数:'</span>,n_features, <span class="string">'类别数:'</span>,labelNum)</div><div class="line"><span class="comment"># 特征和标签</span></div><div class="line">X= iris.data</div><div class="line">y = iris.target</div><div class="line"><span class="comment"># 特征归一化</span></div><div class="line">X = StandardScaler().fit_transform(X)</div><div class="line"><span class="comment">#训练集和测试机分割</span></div><div class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=<span class="number">0.3</span>)</div><div class="line"></div><div class="line"><span class="comment"># 训练模型</span></div><div class="line">MLP = MLPClassifier(hidden_layer_sizes=(n_features,<span class="number">200</span>,labelNum),max_iter=<span class="number">500</span>)</div><div class="line">MLP.fit(X_train,y_train)</div><div class="line"><span class="comment"># 预测</span></div><div class="line">labelPredict = MLP.predict(X_test)</div><div class="line"><span class="comment"># 模糊矩阵</span></div><div class="line"><span class="built_in">print</span>(confusion_matrix(y_test,labelPredict))</div><div class="line"></div><div class="line"><span class="built_in">print</span>(classification_report(y_test,labelPredict))</div></pre></td></tr></table></figure>
+<p>上述过程使用python自带的iris数据集，利用神经网络进行分类预测。模型层数为[4,200,3]，最大迭代次数为500次。神经网络中Dev其它参数为默认参数，如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MLPClassifier(hidden_layer_sizes=(100, ), <span class="attribute">activation</span>=’relu’, <span class="attribute">solver</span>=’adam’, <span class="attribute">alpha</span>=0.0001, <span class="attribute">batch_size</span>=’auto’, <span class="attribute">learning_rate</span>=’constant’, <span class="attribute">learning_rate_init</span>=0.001, <span class="attribute">power_t</span>=0.5, <span class="attribute">max_iter</span>=200, <span class="attribute">shuffle</span>=<span class="literal">True</span>, <span class="attribute">random_state</span>=None, <span class="attribute">tol</span>=0.0001, <span class="attribute">verbose</span>=<span class="literal">False</span>, <span class="attribute">warm_start</span>=<span class="literal">False</span>, <span class="attribute">momentum</span>=0.9, <span class="attribute">nesterovs_momentum</span>=<span class="literal">True</span>, <span class="attribute">early_stopping</span>=<span class="literal">False</span>, <span class="attribute">validation_fraction</span>=0.1, <span class="attribute">beta_1</span>=0.9, <span class="attribute">beta_2</span>=0.999, <span class="attribute">epsilon</span>=1e-08)</div></pre></td></tr></table></figure>
+<h2 id="相关下载"><a href="#相关下载" class="headerlink" title="相关下载"></a>相关下载</h2><p><a href="https://github.com/mcu1988/BPCode" target="_blank" rel="external">Python3实现神经网络</a></p>
+]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;dfd&quot;&gt;&lt;a href=&quot;#dfd&quot; class=&quot;headerlink&quot; title=&quot;dfd&quot;&gt;&lt;/a&gt;dfd&lt;/h2&gt;&lt;p&gt;上一篇文章详细推导了神经网络的原理，这篇文章讨论的是如何将公式以代码的方式实现出来。&lt;/p&gt;
-&lt;p&gt;梯度下降算法更新参数w和b，&lt;/
+      &lt;p&gt;上一篇文章详细推导了神经网络的原理，这篇文章讨论的是如何将公式以代码的方式实现出来。&lt;/p&gt;
+&lt;p&gt;梯度下降算法更新参数w和b，&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://our9hb3to.bkt.clouddn.com/%E4%BA%8C%E5%85%83%E5%
     
     </summary>
     
@@ -171,9 +145,9 @@ print(classification_report(y_test,labelPredict))
     <link href="https://mcu1988.github.io/2016/12/28/hello-world/undefined-title/"/>
     <id>https://mcu1988.github.io/2016/12/28/hello-world/undefined-title/</id>
     <published>2016-12-28T13:01:30.000Z</published>
-    <updated>2017-08-17T16:44:58.000Z</updated>
+    <updated>2017-08-18T08:11:41.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello-world"></a>hello-world</h2><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的结构和功能的数学模型或计算模型，用于对函数进行估计或近似。最著名的是1986年由Rumelhart和McCelland提出的BP神经网络模型。</p>
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的结构和功能的数学模型或计算模型，用于对函数进行估计或近似。最著名的是1986年由Rumelhart和McCelland提出的BP神经网络模型。</p>
 <h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p>神经网络的基本结构如图1所示，包含3层结构：输入层、隐含层、输出层。输入层输入特征变量，输出层是要进行分类或者回归的值。</p>
 <center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%9B%BE%E7%89%871.png" width="40%" height="25%">图1 神经网络基本结构<br></center>  
 
@@ -241,7 +215,7 @@ print(classification_report(y_test,labelPredict))
     
     <summary type="html">
     
-      &lt;h2 id=&quot;hello-world&quot;&gt;&lt;a href=&quot;#hello-world&quot; class=&quot;headerlink&quot; title=&quot;hello-world&quot;&gt;&lt;/a&gt;hello-world&lt;/h2&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;head
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的
     
     </summary>
     
