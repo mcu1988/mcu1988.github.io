@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mcu1988.github.io/2017/07/31/Test/undefined-title/">
+    <link itemprop="mainEntityOfPage" href="https://mcu1988.github.io/2017/08/18/在Next主题中使用mathjax书写公式/undefined-title/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JasonXu">
@@ -298,7 +298,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/31/Test/undefined-title/" itemprop="url">神经网络</a></h1>
+                <a class="post-title-link" href="/2017/08/18/在Next主题中使用mathjax书写公式/undefined-title/" itemprop="url">在Next主题中使用mathjax书写公式</a></h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T19:43:01+08:00">
-                2017-07-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-18T13:26:39+08:00">
+                2017-08-18
               </time>
             
 
@@ -321,6 +321,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo优化/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo优化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -328,7 +350,7 @@
 
           
           
-             <span id="/2017/07/31/Test/undefined-title/" class="leancloud_visitors" data-flag-title="神经网络">
+             <span id="/2017/08/18/在Next主题中使用mathjax书写公式/undefined-title/" class="leancloud_visitors" data-flag-title="在Next主题中使用mathjax书写公式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -361,9 +383,247 @@
       
         
           
-            <h1 id="dfd"><a href="#dfd" class="headerlink" title="dfd"></a>dfd</h1><p><img src="http://note.youdao.com/favicon.ico" alt="image"></p>
-<p>```math<br>E = mc^2</p>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>写博客有时会遇到添加公式的情况，如果用图片的方式插入公式，一者不美观，二者公式不清晰，三者公式难以自动编号。有过撰写论文经验的朋友都知道，公式一般要居中对齐，并且在公式所在行的最右边需要添加公式编号。博主花了好久结局了这个问题，下面将自己的方法分享出来。</p>
+<p>Mathjax和Katex都能够在网页中添加公式，后者是新开发出来的，在速度上据说由于前者，但前者用较多，教程也更多，我选着了前者。</p>
+<h2 id="MathJax简介"><a href="#MathJax简介" class="headerlink" title="MathJax简介"></a>MathJax简介</h2><p>MathJax是一个跨浏览器JavaScript库，它在Web浏览器中显示数学符号，使用MathML，LaTeX和ASCIIMathML标记。MathJax作为Apache许可证下的开源软件发布。</p>
+<h2 id="使用Mathjax"><a href="#使用Mathjax" class="headerlink" title="使用Mathjax"></a>使用Mathjax</h2><p>有3中方法使用Mathjax：</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>在markdown博客中引入脚本：</p>
+<pre><code>&lt;script 
+    src=&quot;//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
+&lt;/script&gt;
+</code></pre><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>在next主题的配置文件_config.yml中搜索MathJax，将enable:和  per_page: 的选项更改为true，如图：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathjax%E9%85%8D%E7%BD%AE%E6%9B%B4%E6%94%B9true.png" width="100%" height="25%"><br></center>  
 
+<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>使用hexo-math插件</p>
+<p>安装步骤：</p>
+<ol>
+<li>进入博客所在文件夹，输入命令：npm install hexo-math –save </li>
+<li><p>在hexo的配置文件_config.yml中添加：  </p>
+  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="attr"> math:</span></div><div class="line"><span class="attr">  engine:</span> <span class="string">'mathjax'</span> <span class="comment"># or 'katex'</span></div><div class="line"><span class="attr">mathjax:</span></div><div class="line"><span class="attr">    src:</span> <span class="string">custom_mathjax_source</span></div><div class="line"><span class="attr">    config:</span></div><div class="line">      <span class="comment"># MathJax config</span></div><div class="line"><span class="attr">  katex:</span></div><div class="line"><span class="attr">    css:</span> <span class="string">custom_css_source</span></div><div class="line"><span class="attr">    js:</span> <span class="string">custom_js_source</span> <span class="comment"># not used</span></div><div class="line"><span class="attr">    config:</span></div><div class="line">      <span class="comment"># KaTeX config</span></div></pre></td></tr></table></figure>
+<p>  Hexo-math可以配置使用’mathjax或者 ‘katex’。 有关Hexo-math的详细信息和安装过程参考<a href="https://github.com/hexojs/hexo-math" target="_blank" rel="external">这里</a>。</p>
+</li>
+</ol>
+<p>以上三种方法中推荐使用第二种。</p>
+<h2 id="公式自动编号"><a href="#公式自动编号" class="headerlink" title="公式自动编号"></a>公式自动编号</h2><p>安装MathJax后，默认只识别行内公式，公式输入格式要求是这样的：\$公式\$或者\\公式\\，而且公式不支持自动编号，这样使用起来不太方便。</p>
+<p>解决办法如下（只针对上面的方法二）：</p>
+<p>找到MathJax配置文件themes/next/layout下的mathjax.swig文件，更改如下（<a href="https://github.com/mcu1988/MathJaxConfiguration" target="_blank" rel="external">完整代码在这里</a>）：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathjax%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7.png" width="100%" height="25%"><br></center>  
+
+<p>更改了inlinemath和displaymath增加了autoNumber:”all”，更改后行内公式输入格式：\$公式\$，行间输入公式格式：\$\$公式\$\$，行间公式自动在页面右端添加编号。</p>
+<p>例如：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$$S(x)=\frac&#123;<span class="number">1</span>&#125;&#123;<span class="number">1</span>+&#123; &#123;e&#125;^&#123;-x&#125; &#125; &#125;$$</div></pre></td></tr></table></figure>
+<p>显示如下：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%85%AC%E5%BC%8F%E7%BC%96%E5%8F%B7%E5%9B%BE%E4%BE%8B.png" width="100%" height="25%"><br></center>  
+
+<h2 id="输入公式方法"><a href="#输入公式方法" class="headerlink" title="输入公式方法"></a>输入公式方法</h2><p>先在mathype中写好公式，然后调整mathtype选项，</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathtype%E7%B2%98%E8%B4%B4tex%E8%AE%BE%E7%BD%AE1.png" width="80%" height="25%"><br></center>  
+
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathtype%E7%B2%98%E8%B4%B4tex%E8%AE%BE%E7%BD%AE2.png" width="80%" height="25%"><br></center>  
+
+<p>粘贴公式到markdown中，建议使用<a href="https://www.zybuluo.com/mdeditor#852900" target="_blank" rel="external">Cmd Markdown</a>，可以预览公式。</p>
+<h2 id="一些bug"><a href="#一些bug" class="headerlink" title="一些bug"></a>一些bug</h2><ol>
+<li><p>公式中出现 {{ 和 }} 时hexo报错，解决办法是在两个相连的大括号中添加空格，例如： 将{{修改为{空格{  或者更改为：{ % raw % }  {{ { % endraw % } 。参考hexo官方的说明<a href="https://hexo.io/zh-cn/docs/troubleshooting.html" target="_blank" rel="external">泄露（Escape）内容</a><br>一个最简单的方法如下：</p>
+ <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;%<span class="built_in"> raw </span>%&#125;</div><div class="line">公式</div><div class="line">&#123;% endraw %&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>mathtype中一些特殊的符号在MathJax中不显示，如</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathtype%E4%B8%8D%E8%AF%86%E5%88%AB%E7%9A%84%E7%AC%A6%E5%8F%B7.png" width="20%" height="25%"><br></center>  
+</li>
+<li><p>复杂的公式中如果变量下表包含多个字母时建议用空格隔开，否则公式不显示。</p>
+</li>
+</ol>
+<h2 id="关于CDN"><a href="#关于CDN" class="headerlink" title="关于CDN"></a>关于CDN</h2><p>MathJax宣布在2017.4.30关闭了CDN，并提供了其它的CDN，参考<a href="https://www.mathjax.org/cdn-shutting-down/" target="_blank" rel="external">这里</a></p>
+<p>更改方法如下：</p>
+<p>找到MathJax配置文件mathjax.swig，把</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">async</span></span></div><div class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js? ?config=TeX-AMS-MML_HTMLorMML "</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>更改为</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">async</span></span></div><div class="line"><span class="tag">	<span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>另外：如果CDN使用的是<a href="https://cdn.mathjax.org/mathjax/latest/" target="_blank" rel="external">https://cdn.mathjax.org/mathjax/latest/</a> 建议更改为最新版本的CDN: <a href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" target="_blank" rel="external">https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML</a></p>
+<h2 id="相关下载"><a href="#相关下载" class="headerlink" title="相关下载"></a>相关下载</h2><p><a href="https://github.com/mcu1988/MathJaxConfiguration" target="_blank" rel="external">MathJax配置文件</a></p>
+<p>参考：</p>
+<ol>
+<li><a href="https://www.linpx.com/p/front-end-integration-mathjaxjs-configuration.html" target="_blank" rel="external">https://www.linpx.com/p/front-end-integration-mathjaxjs-configuration.html</a></li>
+<li><a href="http://docs.mathjax.org/en/latest/tex.html?highlight=autonumber" target="_blank" rel="external">http://docs.mathjax.org/en/latest/tex.html?highlight=autonumber</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mcu1988.github.io/2017/07/31/Test/undefined-title/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JasonXu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/kenan.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JasonXu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/31/Test/undefined-title/" itemprop="url">神经网络Python实现</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T19:43:01+08:00">
+                2017-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/31/Test/undefined-title/" class="leancloud_visitors" data-flag-title="神经网络Python实现">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="dfd"><a href="#dfd" class="headerlink" title="dfd"></a>dfd</h2><p>上一篇文章详细推导了神经网络的原理，这篇文章讨论的是如何将公式以代码的方式实现出来。</p>
+<p>梯度下降算法更新参数w和b，</p>
+<p><img src="http://our9hb3to.bkt.clouddn.com/%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86.jpg" alt="二元函数微分"></p>
+<p>参数w和b的偏导计算方式为：</p>
+<p>$$\eqalign{<br>&amp; {\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 - \sigma ({z_j}^l))  \cr<br>&amp; {\delta _j}^l{\text{ = } }\sum\limits_k^{} {\omega _{jk}^{l + 1}\sigma’({z_j}^l){\delta _k}^{l + 1} }  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j}}^l} }={\delta _j}^l{a_k}^{l - 1}  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j} }^l} }{\text{ = } }{\delta _j}^l{a_k}^{l - 1}<br>\cr} $$</p>
+<p>上式包含很多的变量上下标，这给实际编程带累了困难，为了简化变量的迭代过程，将上式以向量的形式表达出来，而python中的numpy库可以进行矩阵操作，这样就避免了嵌套多层循环，使得代码更加简洁易懂。</p>
+<p>首先将输出层的误差用向量表达出来。对于2分类问题，输出层节点有2个，对于多分类问题，输出层节点数目有多个，因此，输出层节点的误差可以用一个向量表达出来。</p>
+<p>$${\delta ^l} = {({\delta ^l},{\delta _2}^l, \cdots ,{\delta _n}^l)^T}$$</p>
+<p>所以输出层误差向量计算公式为：</p>
+<p>$${\delta ^l}{\text{ = (} }{ {\text{a} }^l}{\text{ - y)} } \odot \sigma’({z^l})$$</p>
+<p>隐层误差计算公式向量化表示为</p>
+<p>$${\delta ^l}=\omega _{}^{l + 1}\sigma’({z_{}}^l){\delta _{}}^{l + 1}$$</p>
+<p>上述公式的实现代码（基于python2.7）在这里：</p>
+<p><a href="https://github.com/mnielsen/neural-networks-and-deep-learning" target="_blank" rel="external">Python2 版本代码</a></p>
+<p>Python3的代码在这里：</p>
+<p><a href="[Python2 版本代码](https://github.com/mnielsen/neural-networks-and-deep-learning">Python3 版本代码</a></p>
+<p>上面的代码都是从0一步步实现神经网络的，阅读上面代码有助于理解公式转化为代码的详细过程。</p>
+<p>Python的scikit-learn库中自带多层神经网络的函数，因此，实际中，只需调用已有的包就能实现神经网络。下面给出python实现神经网络的示例代码。</p>
+<pre><code>import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import classification_report,confusion_matrix
+
+
+iris = load_iris() # iris数据集
+n_samples, n_features = iris.data.shape
+labelNum = np.unique(iris.target).shape[0]
+print(&apos;样本数:&apos;,n_samples, &apos;特征数:&apos;,n_features, &apos;类别数:&apos;,labelNum)
+
+X= iris.data # 特征和标签
+y = iris.target
+
+X = StandardScaler().fit_transform(X) # 特征归一化
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)  #训练集和测试机分割
+
+
+MLP = MLPClassifier(hidden_layer_sizes=(n_features,200,labelNum),max_iter=500)  # 训练模型
+MLP.fit(X_train,y_train)
+
+labelPredict = MLP.predict(X_test)  # 预测
+
+print(confusion_matrix(y_test,labelPredict))  # 模糊矩阵
+
+print(classification_report(y_test,labelPredict))
+</code></pre><p>上述过程使用python自带的iris数据集，利用神经网络进行分类预测。模型层数为[4,200,3]，最大迭代次数为500次。神经网络中Dev其它参数为默认参数。</p>
+<pre><code>MLPClassifier(hidden_layer_sizes=(100, ), activation=’relu’, solver=’adam’, alpha=0.0001, batch_size=’auto’, learning_rate=’constant’, learning_rate_init=0.001, power_t=0.5, max_iter=200, shuffle=True, random_state=None, tol=0.0001, verbose=False, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
+</code></pre>
           
         
       
@@ -430,7 +690,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/12/28/hello-world/undefined-title/" itemprop="url">神经网络</a></h1>
+                <a class="post-title-link" href="/2016/12/28/hello-world/undefined-title/" itemprop="url">神经网络原理推导</a></h1>
         
 
         <div class="post-meta">
@@ -460,7 +720,7 @@
 
           
           
-             <span id="/2016/12/28/hello-world/undefined-title/" class="leancloud_visitors" data-flag-title="神经网络">
+             <span id="/2016/12/28/hello-world/undefined-title/" class="leancloud_visitors" data-flag-title="神经网络原理推导">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -520,7 +780,12 @@
 <p>式（2）中，n是输入样本个数，实际计算过程中，可视为常数，w和b的反向更新过程忽略n，即单个样本的目标函数如下：</p>
 <p>$$C(\omega ,b) = \frac{1}{2}\sum\limits_j^{} { { { ({y_j} - {a_j}^l)}^2} } $$</p>
 <p>这个公式的实际含义是计算对输出层所以节点输出与目标值之间偏差的平方。<br>下面定义几个符号变量，</p>
-<p>${\omega _{ij} }^l$ :第l-1层第i个节点到第l层第j个节点的连接权重<br>${b_j}^l$: 第l层第j个节点的偏置<br>${z_j}^l$: 第l层第j个节点激活函数的输入<br>${a_j}^l$: 第l层第j个节点激活函数的输出</p>
+<ul>
+<li>${\omega _{ij} }^l$ :第l-1层第i个节点到第l层第j个节点的连接权重</li>
+<li>${b_j}^l$: 第l层第j个节点的偏置</li>
+<li>${z_j}^l$: 第l层第j个节点激活函数的输入</li>
+<li>${a_j}^l$: 第l层第j个节点激活函数的输出</li>
+</ul>
 <p>各变量代表的含义如图3中所示：</p>
 <center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%8F%98%E9%87%8F%E5%9C%A8%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA.png" width="60%">图3 变量在图中的表示<br></center> 
 
@@ -549,9 +814,9 @@
 <p>$$\frac{ {\partial C} }{ {\partial {b_j}^l} } = \frac{ {\partial C} }{ {\partial {z_j}^l} }\frac{ {\partial {z_j}^l} }{ {\partial {b_j}^l} } = \frac{ {\partial C} }{ {\partial {z_j}^l} }{\text{ = } }{\delta _j}^l$$</p>
 <p>目标函数对w的偏导为：</p>
 <p>$$\frac{ {\partial C} }{ {\partial {\omega _{k j} }^l} } = \frac{ {\partial C} }{ {\partial {z_j}^l} }\frac{ {\partial {z_j}^l} }{ {\partial {\omega _{k j} }^l} }{\text{ = } }{\delta _j}^l{a_k}^{l - 1}$$</p>
-<p>至此，反向传播过程中参数w和b的更新公式计算完毕。整理如下：<br>$$\eqalign{<br>&amp; {\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 - \sigma ({z_j}^l))  \cr<br>&amp; {\delta _j}^l{\text{ = } }\sum\limits_k^{} {\omega _{jk}^{l + 1}\sigma ‘({z_j}^l){\delta _k}^{l + 1} }  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j}}^l} }={\delta _j}^l{a_k}^{l - 1}  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j} }^l} }{\text{ = } }{\delta _j}^l{a_k}^{l - 1}<br>\cr} $$</p>
+<p>至此，反向传播过程中参数w和b的更新公式计算完毕。整理如下：<br>$$\eqalign{<br>&amp; {\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 - \sigma ({z_j}^l))  \cr<br>&amp; {\delta _j}^l{\text{ = } }\sum\limits_k^{} {\omega _{jk}^{l + 1}\sigma’({z_j}^l){\delta _k}^{l + 1} }  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j}}^l} }={\delta _j}^l{a_k}^{l - 1}  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j} }^l} }{\text{ = } }{\delta _j}^l{a_k}^{l - 1}<br>\cr} $$</p>
 <p>上式计算出了参数w和b的偏导，代入式（3）和（4）中即可更新参数w和b。</p>
-<p>下一片文章我将用一个详细的例子来解释神经网络参数的迭代过程。</p>
+<p>接下来的文章我将用一个详细的例子来解释神经网络参数的迭代过程。</p>
 
           
         
@@ -633,14 +898,32 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
@@ -1019,11 +1302,10 @@
   });
 </script>
 <script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">  // link to the MathJax CDN
+   //src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">  // link to the MathJax CDN
 </script>
-<!-- MathJax End -->
+<!-- MathJax End --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
   
 

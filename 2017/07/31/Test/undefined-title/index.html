@@ -96,19 +96,19 @@
 
 
 
-<meta name="description" content="dfd ```mathE = mc^2">
+<meta name="description" content="dfd上一篇文章详细推导了神经网络的原理，这篇文章讨论的是如何将公式以代码的方式实现出来。 梯度下降算法更新参数w和b，  参数w和b的偏导计算方式为： $$\eqalign{&amp;amp; {\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 -">
 <meta property="og:type" content="article">
-<meta property="og:title" content="神经网络">
+<meta property="og:title" content="神经网络Python实现">
 <meta property="og:url" content="https://mcu1988.github.io/2017/07/31/Test/undefined-title/index.html">
 <meta property="og:site_name" content="JasonXu">
-<meta property="og:description" content="dfd ```mathE = mc^2">
+<meta property="og:description" content="dfd上一篇文章详细推导了神经网络的原理，这篇文章讨论的是如何将公式以代码的方式实现出来。 梯度下降算法更新参数w和b，  参数w和b的偏导计算方式为： $$\eqalign{&amp;amp; {\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 -">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://note.youdao.com/favicon.ico">
-<meta property="og:updated_time" content="2017-08-16T16:17:10.000Z">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86.jpg">
+<meta property="og:updated_time" content="2017-08-17T16:55:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="神经网络">
-<meta name="twitter:description" content="dfd ```mathE = mc^2">
-<meta name="twitter:image" content="http://note.youdao.com/favicon.ico">
+<meta name="twitter:title" content="神经网络Python实现">
+<meta name="twitter:description" content="dfd上一篇文章详细推导了神经网络的原理，这篇文章讨论的是如何将公式以代码的方式实现出来。 梯度下降算法更新参数w和b，  参数w和b的偏导计算方式为： $$\eqalign{&amp;amp; {\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 -">
+<meta name="twitter:image" content="http://our9hb3to.bkt.clouddn.com/%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86.jpg">
 
 
 
@@ -143,7 +143,7 @@
 
 
 
-  <title>神经网络 | JasonXu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>神经网络Python实现 | JasonXu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -297,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">神经网络</h1>
+          <h1 class="post-title" itemprop="name headline">神经网络Python实现</h1>
         
 
         <div class="post-meta">
@@ -327,7 +327,7 @@
 
           
           
-             <span id="/2017/07/31/Test/undefined-title/" class="leancloud_visitors" data-flag-title="神经网络">
+             <span id="/2017/07/31/Test/undefined-title/" class="leancloud_visitors" data-flag-title="神经网络Python实现">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -358,9 +358,56 @@
       
 
       
-        <h1 id="dfd"><a href="#dfd" class="headerlink" title="dfd"></a>dfd</h1><p><img src="http://note.youdao.com/favicon.ico" alt="image"></p>
-<p>```math<br>E = mc^2</p>
+        <h2 id="dfd"><a href="#dfd" class="headerlink" title="dfd"></a>dfd</h2><p>上一篇文章详细推导了神经网络的原理，这篇文章讨论的是如何将公式以代码的方式实现出来。</p>
+<p>梯度下降算法更新参数w和b，</p>
+<p><img src="http://our9hb3to.bkt.clouddn.com/%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86.jpg" alt="二元函数微分"></p>
+<p>参数w和b的偏导计算方式为：</p>
+<p>$$\eqalign{<br>&amp; {\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 - \sigma ({z_j}^l))  \cr<br>&amp; {\delta _j}^l{\text{ = } }\sum\limits_k^{} {\omega _{jk}^{l + 1}\sigma’({z_j}^l){\delta _k}^{l + 1} }  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j}}^l} }={\delta _j}^l{a_k}^{l - 1}  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j} }^l} }{\text{ = } }{\delta _j}^l{a_k}^{l - 1}<br>\cr} $$</p>
+<p>上式包含很多的变量上下标，这给实际编程带累了困难，为了简化变量的迭代过程，将上式以向量的形式表达出来，而python中的numpy库可以进行矩阵操作，这样就避免了嵌套多层循环，使得代码更加简洁易懂。</p>
+<p>首先将输出层的误差用向量表达出来。对于2分类问题，输出层节点有2个，对于多分类问题，输出层节点数目有多个，因此，输出层节点的误差可以用一个向量表达出来。</p>
+<p>$${\delta ^l} = {({\delta ^l},{\delta _2}^l, \cdots ,{\delta _n}^l)^T}$$</p>
+<p>所以输出层误差向量计算公式为：</p>
+<p>$${\delta ^l}{\text{ = (} }{ {\text{a} }^l}{\text{ - y)} } \odot \sigma’({z^l})$$</p>
+<p>隐层误差计算公式向量化表示为</p>
+<p>$${\delta ^l}=\omega _{}^{l + 1}\sigma’({z_{}}^l){\delta _{}}^{l + 1}$$</p>
+<p>上述公式的实现代码（基于python2.7）在这里：</p>
+<p><a href="https://github.com/mnielsen/neural-networks-and-deep-learning" target="_blank" rel="external">Python2 版本代码</a></p>
+<p>Python3的代码在这里：</p>
+<p><a href="[Python2 版本代码](https://github.com/mnielsen/neural-networks-and-deep-learning">Python3 版本代码</a></p>
+<p>上面的代码都是从0一步步实现神经网络的，阅读上面代码有助于理解公式转化为代码的详细过程。</p>
+<p>Python的scikit-learn库中自带多层神经网络的函数，因此，实际中，只需调用已有的包就能实现神经网络。下面给出python实现神经网络的示例代码。</p>
+<pre><code>import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import classification_report,confusion_matrix
 
+
+iris = load_iris() # iris数据集
+n_samples, n_features = iris.data.shape
+labelNum = np.unique(iris.target).shape[0]
+print(&apos;样本数:&apos;,n_samples, &apos;特征数:&apos;,n_features, &apos;类别数:&apos;,labelNum)
+
+X= iris.data # 特征和标签
+y = iris.target
+
+X = StandardScaler().fit_transform(X) # 特征归一化
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)  #训练集和测试机分割
+
+
+MLP = MLPClassifier(hidden_layer_sizes=(n_features,200,labelNum),max_iter=500)  # 训练模型
+MLP.fit(X_train,y_train)
+
+labelPredict = MLP.predict(X_test)  # 预测
+
+print(confusion_matrix(y_test,labelPredict))  # 模糊矩阵
+
+print(classification_report(y_test,labelPredict))
+</code></pre><p>上述过程使用python自带的iris数据集，利用神经网络进行分类预测。模型层数为[4,200,3]，最大迭代次数为500次。神经网络中Dev其它参数为默认参数。</p>
+<pre><code>MLPClassifier(hidden_layer_sizes=(100, ), activation=’relu’, solver=’adam’, alpha=0.0001, batch_size=’auto’, learning_rate=’constant’, learning_rate_init=0.001, power_t=0.5, max_iter=200, shuffle=True, random_state=None, tol=0.0001, verbose=False, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
+</code></pre>
       
     </div>
     
@@ -384,8 +431,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/28/hello-world/undefined-title/" rel="next" title="神经网络">
-                <i class="fa fa-chevron-left"></i> 神经网络
+              <a href="/2016/12/28/hello-world/undefined-title/" rel="next" title="神经网络原理推导">
+                <i class="fa fa-chevron-left"></i> 神经网络原理推导
               </a>
             
           </div>
@@ -393,6 +440,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/18/在Next主题中使用mathjax书写公式/undefined-title/" rel="prev" title="在Next主题中使用mathjax书写公式">
+                在Next主题中使用mathjax书写公式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -469,14 +520,32 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
           
 
         </nav>
@@ -539,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dfd"><span class="nav-number">1.</span> <span class="nav-text">dfd</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dfd"><span class="nav-number">1.</span> <span class="nav-text">dfd</span></a></li></ol></div>
             
 
           </div>
@@ -871,11 +940,10 @@
   });
 </script>
 <script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">  // link to the MathJax CDN
+   //src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">  // link to the MathJax CDN
 </script>
-<!-- MathJax End -->
+<!-- MathJax End --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
   
 
