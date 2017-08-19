@@ -389,19 +389,19 @@ $$\eqalign{
   & {{w'}_{kj}}^l = {w_{kj}}^l - \eta \Delta {w_{kj}}^l \cr} $$
 
 <p>下面用一个实例说明此过程。</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png" width="60%" height="25%">图1 3层网络结构及参数<br></center>  
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png" width="80%" height="25%">图1 3层网络结构及参数<br></center>  
 
 <p>参数初始化如下：</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E5%8F%82%E6%95%B0.png" width="100%" height="25%">图2 参数初始化<br></center>  
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E5%8F%82%E6%95%B0.png" width="80%" height="25%">图2 参数初始化<br></center>  
 
 <p>网络正向传递结果如下：</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%89%8D%E5%90%91%E4%BC%A0%E9%80%92.png" width="100%" height="25%">图3 前向传递过程<br></center>  
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%89%8D%E5%90%91%E4%BC%A0%E9%80%92.png" width="80%" height="25%">图3 前向传递过程<br></center>  
 
 <p>误差反向传播如下：</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E4%BE%8B%E5%AD%90%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%AF%AF%E5%B7%AE.png" width="100%" height="25%">图4 反向传播误差计算<br></center>  
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E4%BE%8B%E5%AD%90%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%AF%AF%E5%B7%AE.png" width="80%" height="25%">图4 反向传播误差计算<br></center>  
 
 <p>节点6是输出层的节点，应用公式（2）直接求解，节点4和5是应用公式3求解。<br>参数w和b更新如下：</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0.png" width="100%" height="25%">图5 参数更新过程<br></center> 
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0.png" width="80%" height="25%">图5 参数更新过程<br></center> 
 
 <p>b依据公式（4），w依据公式（5）求解。</p>
 <p>反向传播算法在图4中的体现为，隐含层节点4和5的误差根据输出层节点6的误差递推而来。如果网络层数超过3层，误差还是依据公式（3）一层层往上递推。</p>
