@@ -96,24 +96,23 @@
 
 
 
-<meta name="description" content="概述人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的结构和功能的数学模型或计算模型，用于对函数进行估计或近似。最著名的是1986年由Rumelhart和McCelland提出的BP神经网络模型。 网络结构神经网络的基本结构如图1所示，包含3层结构：输入层、隐含层、输出层。输入层输入特征变量，输出层是要进行分">
+<meta name="description" content="误差递推公式文章神经网络原理推导中给出了神经网络误差反向传播的公式，  $$\eqalign{   &amp; {\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L}){\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L})">
 <meta property="og:type" content="article">
-<meta property="og:title" content="神经网络原理推导">
-<meta property="og:url" content="https://mcu1988.github.io/2016/12/28/神经网络原理推导/undefined-title/index.html">
+<meta property="og:title" content="一个例子理解BP反向传播">
+<meta property="og:url" content="https://mcu1988.github.io/2017/08/19/一个例子理解BP反向传播/index.html">
 <meta property="og:site_name" content="JasonXu">
-<meta property="og:description" content="概述人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的结构和功能的数学模型或计算模型，用于对函数进行估计或近似。最著名的是1986年由Rumelhart和McCelland提出的BP神经网络模型。 网络结构神经网络的基本结构如图1所示，包含3层结构：输入层、隐含层、输出层。输入层输入特征变量，输出层是要进行分">
+<meta property="og:description" content="误差递推公式文章神经网络原理推导中给出了神经网络误差反向传播的公式，  $$\eqalign{   &amp; {\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L}){\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L})">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E5%9B%BE%E7%89%871.png">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86.jpg">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E4%B8%80%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%9B%BE%E8%A7%A3.png">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E5%8F%98%E9%87%8F%E5%9C%A8%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA.png">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E9%93%BE%E5%BC%8F%E6%B1%82%E5%AF%BC%E6%B1%82%E8%A7%A3.png">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99%E5%9B%BE%E8%A7%A3.png">
-<meta property="og:updated_time" content="2017-08-18T08:11:41.000Z">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/BP%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E5%8F%82%E6%95%B0.png">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E5%89%8D%E5%90%91%E4%BC%A0%E9%80%92.png">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/BP%E4%BE%8B%E5%AD%90%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%AF%AF%E5%B7%AE.png">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0.png">
+<meta property="og:updated_time" content="2017-08-19T07:01:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="神经网络原理推导">
-<meta name="twitter:description" content="概述人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的结构和功能的数学模型或计算模型，用于对函数进行估计或近似。最著名的是1986年由Rumelhart和McCelland提出的BP神经网络模型。 网络结构神经网络的基本结构如图1所示，包含3层结构：输入层、隐含层、输出层。输入层输入特征变量，输出层是要进行分">
-<meta name="twitter:image" content="http://our9hb3to.bkt.clouddn.com/%E5%9B%BE%E7%89%871.png">
+<meta name="twitter:title" content="一个例子理解BP反向传播">
+<meta name="twitter:description" content="误差递推公式文章神经网络原理推导中给出了神经网络误差反向传播的公式，  $$\eqalign{   &amp; {\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L}){\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L})">
+<meta name="twitter:image" content="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png">
 
 
 
@@ -142,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="https://mcu1988.github.io/2016/12/28/神经网络原理推导/undefined-title/"/>
+  <link rel="canonical" href="https://mcu1988.github.io/2017/08/19/一个例子理解BP反向传播/"/>
 
 
 
 
 
-  <title>神经网络原理推导 | JasonXu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>一个例子理解BP反向传播 | JasonXu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -285,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mcu1988.github.io/2016/12/28/神经网络原理推导/undefined-title/">
+    <link itemprop="mainEntityOfPage" href="https://mcu1988.github.io/2017/08/19/一个例子理解BP反向传播/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JasonXu">
@@ -302,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">神经网络原理推导</h1>
+          <h1 class="post-title" itemprop="name headline">一个例子理解BP反向传播</h1>
         
 
         <div class="post-meta">
@@ -314,8 +313,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-28T21:01:30+08:00">
-                2016-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T13:46:32+08:00">
+                2017-08-19
               </time>
             
 
@@ -332,7 +331,7 @@
 
           
           
-             <span id="/2016/12/28/神经网络原理推导/undefined-title/" class="leancloud_visitors" data-flag-title="神经网络原理推导">
+             <span id="/2017/08/19/一个例子理解BP反向传播/" class="leancloud_visitors" data-flag-title="一个例子理解BP反向传播">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,70 +362,55 @@
       
 
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>人工神经网络（英文：Artificial Neural Network， ANN）是一种模仿生物神经网络(动物的中枢神经系统，特别是大脑)的结构和功能的数学模型或计算模型，用于对函数进行估计或近似。最著名的是1986年由Rumelhart和McCelland提出的BP神经网络模型。</p>
-<h2 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h2><p>神经网络的基本结构如图1所示，包含3层结构：输入层、隐含层、输出层。输入层输入特征变量，输出层是要进行分类或者回归的值。</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%9B%BE%E7%89%871.png" width="40%" height="25%">图1 神经网络基本结构<br></center>  
+        <h2 id="误差递推公式"><a href="#误差递推公式" class="headerlink" title="误差递推公式"></a>误差递推公式</h2><p>文章<a href="https://mcu1988.github.io/2016/12/28/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E6%8E%A8%E5%AF%BC/undefined-title/">神经网络原理推导</a>中给出了神经网络误差反向传播的公式，</p>
+
+$$\eqalign{
+  & {\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma '({z^L}){\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma '({z^L})  \cr 
+  & {\delta ^l}{\text{ = }}({(\omega _{}^{l + 1})^T}{\delta _{}}^{l + 1}) \odot \sigma '({z^l})  \cr 
+  & \frac{{\partial C}}{{\partial {b_j}^l}}{\text{ = }}{\delta _j}^L  \cr 
+  & \frac{{\partial C}}{{\partial {\omega _{kj}}^l}}{\text{ = }}{\delta _j}^l{a_k}^{l - 1} \cr} $$
+
+<p>上式中${a_j}^l$为输出层激活函数输出，${y_j}$为样本真值，$\sigma ({z_j}^l) = {a_j}^l$,对于输出层误差为</p>
+
+$${\delta _j}^l = ({a_j}^l - {y_j}){a_j}^l(1 - {a_j}^l)$$
+
+<p>对于输入层，误差为：</p>
+
+$${\delta _j}^l{\text{ = }}{z_j}^l(1 - {z_j}^l)\sum\limits_k^{} {\omega _{jk}^{l + 1}{\delta _k}^{l + 1}} $$
+
+<p>参数w和b的更新公式为</p>
+
+$$\eqalign{
+  & \Delta {b_j}^l{\text{ = }}{\delta _j}^l  \cr 
+  & {{b'}_j}^l = {b_j}^l - \eta \Delta {b_j}^l \cr} $$
 
 
-<p>神经网络每一层由若干个S型神经元构成，每一个S型神经元的结构和感知机相似，参考上一节中感知器的模型结构。它与感知器的不同在于激活函数采用Sigmoid函数，</p>
-<p>$$S(x)=\frac{1}{1+{ {e}^{-x} } }$$ </p>
-<p>该激活函数与感知器中阶跃激活函数的波形类似，如图2所示，这也表明可以用该函数近似代替阶跃函数，其最大的优点在于，它是一个连续可导的函数，这样，神经元的微小的输出变化可以用导数形式近似表达出来：</p>
-<p><img src="http://our9hb3to.bkt.clouddn.com/%E4%BA%8C%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86.jpg" alt="二元函数微分"></p>
-<p>神经网络模型建立过程包含两部：正向传递和反向更新。</p>
-<h2 id="正向传递"><a href="#正向传递" class="headerlink" title="正向传递"></a>正向传递</h2><p>首先随机初始化一组参数w和b，输入特征数据，将输入层的S函数输出作为隐含层的输入，隐含层的输出在作为输出层的输入。对于二分类问题，如果输出层S函数的输出大于0.5，则认为该样本属于类别1，否则属于类别0。由于最初的参数w和b是随机初始化的，因此，最终的分类结果并不准确。神经网络的最终目的是得到一组合适的w和b，使得预测结果达到最优，这就需要利用反向更新来进一步调整w和b。</p>
-<h2 id="反向更新"><a href="#反向更新" class="headerlink" title="反向更新"></a>反向更新</h2><p>反向更新（Back Propagation， BP）的目的是确定一组恰当的参数w和b来使输出达到最优。既然是最优问题，就有对应的目标函数，</p>
-<p>$$C(\omega ,b)=\frac{1}{2n}\sum\limits_{x}^{ {} }{\left| y(x)-a \right|}$$</p>
-<p>其中，y(x) 是网络输出，a是实际值。该目标函数表示所有样本预测值和实际值之间差值的平方均值。系数$\frac{1}{2}$ 是为了求导方便而添加上去的，它抵消了2次项求导后的系数2，使得求到后的形式更加简洁。</p>
-<p>我们的目的是使得目标函数最小，而目标函数是参数w和b的函数，因此求解参数w和b就能使得目标函数最小。常用的最优化方法是梯度下降（Gradient Descent）算法。</p>
-<p>什么是梯度？梯度就是函数的一阶导数，负梯度的方向反映着函数值下降最快的方向。下面以一元二次函数讲解。</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E4%B8%80%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E5%9B%BE%E8%A7%A3.png" width="60%">图2 一元二次函数梯度下降图解<br></center> 
+$$\eqalign{
+  & \Delta {w_{kj}}^l{\text{ = }}{a_k}^{l - 1}{\delta _j}^l  \cr 
+  & {{w'}_{kj}}^l = {w_{kj}}^l - \eta \Delta {w_{kj}}^l \cr} $$
 
-<p>该函数梯度$\nabla=2x$，我们的目的是找到函数最小值，具体做法是对x一小步一小步的更新，每次沿负梯度方向更新x，$x\leftarrow x-\gamma \centerdot \nabla $ ，$\gamma$ 可以理解为学习率。这样x会沿着图3中的方向一步步更新，直到达到最小值。</p>
-<p>回到神经网络的问题上来，应用梯度下降算法，更新w和b,</p>
-<p>$$     { { {\omega }’}_{k} }=\omega_k-\eta \frac{\partial C}{\partial { \omega_k } }$$</p>
-<p>$${ { b’}_{l} }=b_l-\eta \frac{\partial C}{\partial { b_l } } $$</p>
-<p>接下来对上式进行推导，给出w和b更新的最终公式。</p>
-<p>先用图3表达变量名称和变量之间的关系。定义式（2）所示的目标函数，该目标函数是预测值和真值距离的平均值。</p>
-<p>式（2）中，n是输入样本个数，实际计算过程中，可视为常数，w和b的反向更新过程忽略n，即单个样本的目标函数如下：</p>
-<p>$$C(\omega ,b) = \frac{1}{2}\sum\limits_j^{} { { { ({y_j} - {a_j}^l)}^2} } $$</p>
-<p>这个公式的实际含义是计算对输出层所以节点输出与目标值之间偏差的平方。<br>下面定义几个符号变量，</p>
-<ul>
-<li>${\omega _{ij} }^l$ :第l-1层第i个节点到第l层第j个节点的连接权重</li>
-<li>${b_j}^l$: 第l层第j个节点的偏置</li>
-<li>${z_j}^l$: 第l层第j个节点激活函数的输入</li>
-<li>${a_j}^l$: 第l层第j个节点激活函数的输出</li>
-</ul>
-<p>各变量代表的含义如图3中所示：</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%8F%98%E9%87%8F%E5%9C%A8%E5%9B%BE%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA.png" width="60%">图3 变量在图中的表示<br></center> 
+<p>下面用一个实例说明此过程。</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png" width="80%" height="25%">图1 3层网络结构及参数<br></center>  
 
-<p>先计算输出层误差：</p>
-<p>$${\delta _j}^l = \frac{ {\partial C} }{ {\partial {z_j}^l} } = \frac{ {\partial C} }{ {\partial {a_j}^l} }\frac{ {\partial {a_j}^l} }{ {\partial {z_j}^l} } = \frac{ {\partial C} }{ {\partial {a_j}^l} }\sigma ‘({z_j}^l)$$</p>
-<p>其中，$\sigma’$ 是激活函数$\sigma $的导数。这个公式表达的含义是目标函数C对输出层激活函数输入${z_j}^l$ 的偏导。该公式是应用链式法则求导，将目标转化为先对S函数输出值求导，再计算S函数输出值对S函数输入的求导。为便于理解，将该过程用图4表达出来。</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E9%93%BE%E5%BC%8F%E6%B1%82%E5%AF%BC%E6%B1%82%E8%A7%A3.png" width="60%">图4 链式求导图解<br></center> 
+<p>参数初始化如下：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E5%8F%82%E6%95%B0.png" width="80%" height="25%">图2 参数初始化<br></center>  
 
-<p>$$\frac{ {\partial C} }{ {\partial {a_j}^l} }{\text{ = (} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }$$</p>
-<p>激活函数Sigmoid这个导数比较特殊，其导数为：</p>
-<p>$$\sigma ‘(z) = (\frac{1}{ {1 + {e^{ - z} } } })’ = \frac{ { {e^{ - z} } } }{ { { {(1 + {e^{ - z} })}^2} } } = \frac{1}{ {1 + {e^{ - z} } } }(1 - \frac{1}{ {1 + {e^{ - z} } } }) = \sigma (z)(1 - \sigma (z))$$</p>
-<p>式（7），式（8）带入式（6）可得：</p>
-<p>$${\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 - \sigma ({z_j}^l))$$</p>
-<p>公式（9）是输出层的偏差，对于输入层的偏差，尝试先计算通项公式，通过第l+1层的偏差来极端第l层的偏差，这有点类似于计算数列的通项公式的思想。</p>
-<p>$${\delta _j}^l{\text{ = } }\frac{ {\partial C} }{ {\partial {z_j}^l} }{\text{ = } }\sum\limits_k^{} {\frac{ {\partial C} }{ {\partial {z_k}^{l + 1} } } } \frac{ {\partial {z_k}^{l + 1} } }{ {\partial {z_j}^l} }{\text{ = } }\sum\limits_k^{} { {\delta _k}^{l + 1} } \frac{ {\partial {z_k}^{l + 1} } }{ {\partial {z_j}^l} }$$</p>
-<p>该式也是利用链式法则，目标函数对l层S函数输入的求导转化为先对l+1层S函数输入的求导，再计算l+1层S函数输入对l层S函数输入的求导。该过程如图5所示。</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E9%93%BE%E5%BC%8F%E6%B3%95%E5%88%99%E5%9B%BE%E8%A7%A3.png" width="60%">图5 链式法则图解<br></center> 
+<p>网络正向传递结果如下：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%89%8D%E5%90%91%E4%BC%A0%E9%80%92.png" width="80%" height="25%">图3 前向传递过程<br></center>  
 
-<p>式（10）中 ${z_k}^{l + 1}$为：</p>
-<p>$${z_k}^{l + 1}=\sum\limits_j^{} {\omega _{j k}^{l + 1} } a_j^l + b_j^{l + 1} = \sum\limits_j^{} {\omega _{j k}^{l + 1} } \sigma ({z_j}^l) + b_j^{l + 1}$$</p>
-<p>$$\frac{ {\partial {z_k}^{l + 1} } }{ {\partial {z_j}^l} }= \omega _{j k}^{l + 1}\sigma ‘({z_j}^l)$$</p>
-<p>式（12）带入式（10）,</p>
-<p>$${\delta _j}^l{\text{ = } }\sum\limits_k^{} {\omega _{j k}^{l + 1}\sigma ‘({z_j}^l){\delta _k}^{l + 1} } $$</p>
-<p>上式表明了由l+1层的误差可以计算得到l层误差，式（9）计算出了输出层的误差，应用公式（13）就可以递推得到隐含层每一层节点上对应的误差。</p>
-<p>我们的目标是反向更新w和b，目标函数对b的偏导为：</p>
-<p>$$\frac{ {\partial C} }{ {\partial {b_j}^l} } = \frac{ {\partial C} }{ {\partial {z_j}^l} }\frac{ {\partial {z_j}^l} }{ {\partial {b_j}^l} } = \frac{ {\partial C} }{ {\partial {z_j}^l} }{\text{ = } }{\delta _j}^l$$</p>
-<p>目标函数对w的偏导为：</p>
-<p>$$\frac{ {\partial C} }{ {\partial {\omega _{k j} }^l} } = \frac{ {\partial C} }{ {\partial {z_j}^l} }\frac{ {\partial {z_j}^l} }{ {\partial {\omega _{k j} }^l} }{\text{ = } }{\delta _j}^l{a_k}^{l - 1}$$</p>
-<p>至此，反向传播过程中参数w和b的更新公式计算完毕。整理如下：<br>$$\eqalign{<br>&amp; {\delta _j}^l = {\text{(} }{ {\text{a} }_j}^l{\text{ - } }{ {\text{y} }_j}{\text{)} }\sigma ({z_j}^l)(1 - \sigma ({z_j}^l))  \cr<br>&amp; {\delta _j}^l{\text{ = } }\sum\limits_k^{} {\omega _{jk}^{l + 1}\sigma’({z_j}^l){\delta _k}^{l + 1} }  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j}}^l} }={\delta _j}^l{a_k}^{l - 1}  \cr<br>&amp; \frac{ {\partial C} }{ {\partial {\omega _{k j} }^l} }{\text{ = } }{\delta _j}^l{a_k}^{l - 1}<br>\cr} $$</p>
-<p>上式计算出了参数w和b的偏导，代入式（3）和（4）中即可更新参数w和b。</p>
-<p>接下来的文章我将用一个详细的例子来解释神经网络参数的迭代过程。</p>
+<p>误差反向传播如下：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E4%BE%8B%E5%AD%90%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%AF%AF%E5%B7%AE.png" width="80%" height="25%">图4 反向传播误差计算<br></center>  
+
+<p>节点6是输出层的节点，应用公式（2）直接求解，节点4和5是应用公式3求解。<br>参数w和b更新如下：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0.png" width="80%" height="25%">图5 参数更新过程<br></center> 
+
+<p>b依据公式（4），w依据公式（5）求解。</p>
+<p>反向传播算法在图4中的体现为，隐含层节点4和5的误差根据输出层节点6的误差递推而来。如果网络层数超过3层，误差还是依据公式（3）一层层往上递推。</p>
+<p>本文图片来源于麦子学院机器学习神经网络课件。</p>
+<p>参考：</p>
+<ol>
+<li><a href="http://www.maiziedu.com/course/373/" target="_blank" rel="external">麦子学院机器学习神经网络课件部分</a></li>
+</ol>
 
       
     </div>
@@ -451,15 +435,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/18/在Next主题中使用mathjax书写公式/" rel="next" title="在Next主题中使用mathjax书写公式">
+                <i class="fa fa-chevron-left"></i> 在Next主题中使用mathjax书写公式
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/31/Test/undefined-title/" rel="prev" title="神经网络Python实现">
-                神经网络Python实现 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -624,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络结构"><span class="nav-number">2.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正向传递"><span class="nav-number">3.</span> <span class="nav-text">正向传递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向更新"><span class="nav-number">4.</span> <span class="nav-text">反向更新</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#误差递推公式"><span class="nav-number">1.</span> <span class="nav-text">误差递推公式</span></a></li></ol></div>
             
 
           </div>

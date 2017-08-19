@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mathjax," />
 
 
 
@@ -96,23 +96,25 @@
 
 
 
-<meta name="description" content="误差递推公式文章神经网络原理推导中给出了神经网络误差反向传播的公式，  $$\eqalign{   &amp; {\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L}){\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L})">
+<meta name="description" content="前言写博客有时会遇到添加公式的情况，如果用图片的方式插入公式，一者不美观，二者公式不清晰，三者公式难以自动编号。有过撰写论文经验的朋友都知道，公式一般要居中对齐，并且在公式所在行的最右边需要添加公式编号。博主花了好久结局了这个问题，下面将自己的方法分享出来。 Mathjax和Katex都能够在网页中添加公式，后者是新开发出来的，在速度上据说由于前者，但前者用较多，教程也更多，我选着了前者。 Mat">
+<meta name="keywords" content="mathjax">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一个例子理解BP反向传播">
-<meta property="og:url" content="https://mcu1988.github.io/2017/08/19/一个例子理解BP反向传播/undefined-title/index.html">
+<meta property="og:title" content="在Next主题中使用mathjax书写公式">
+<meta property="og:url" content="https://mcu1988.github.io/2017/08/18/在Next主题中使用mathjax书写公式/index.html">
 <meta property="og:site_name" content="JasonXu">
-<meta property="og:description" content="误差递推公式文章神经网络原理推导中给出了神经网络误差反向传播的公式，  $$\eqalign{   &amp; {\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L}){\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L})">
+<meta property="og:description" content="前言写博客有时会遇到添加公式的情况，如果用图片的方式插入公式，一者不美观，二者公式不清晰，三者公式难以自动编号。有过撰写论文经验的朋友都知道，公式一般要居中对齐，并且在公式所在行的最右边需要添加公式编号。博主花了好久结局了这个问题，下面将自己的方法分享出来。 Mathjax和Katex都能够在网页中添加公式，后者是新开发出来的，在速度上据说由于前者，但前者用较多，教程也更多，我选着了前者。 Mat">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/BP%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E5%8F%82%E6%95%B0.png">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E5%89%8D%E5%90%91%E4%BC%A0%E9%80%92.png">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/BP%E4%BE%8B%E5%AD%90%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%AF%AF%E5%B7%AE.png">
-<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0.png">
-<meta property="og:updated_time" content="2017-08-19T06:34:35.000Z">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/mathjax%E9%85%8D%E7%BD%AE%E6%9B%B4%E6%94%B9true.png">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/mathjax%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7.png">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/%E5%85%AC%E5%BC%8F%E7%BC%96%E5%8F%B7%E5%9B%BE%E4%BE%8B.png">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/mathtype%E7%B2%98%E8%B4%B4tex%E8%AE%BE%E7%BD%AE1.png">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/mathtype%E7%B2%98%E8%B4%B4tex%E8%AE%BE%E7%BD%AE2.png">
+<meta property="og:image" content="http://our9hb3to.bkt.clouddn.com/mathtype%E4%B8%8D%E8%AF%86%E5%88%AB%E7%9A%84%E7%AC%A6%E5%8F%B7.png">
+<meta property="og:updated_time" content="2017-08-18T07:24:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一个例子理解BP反向传播">
-<meta name="twitter:description" content="误差递推公式文章神经网络原理推导中给出了神经网络误差反向传播的公式，  $$\eqalign{   &amp; {\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L}){\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma &apos;({z^L})">
-<meta name="twitter:image" content="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png">
+<meta name="twitter:title" content="在Next主题中使用mathjax书写公式">
+<meta name="twitter:description" content="前言写博客有时会遇到添加公式的情况，如果用图片的方式插入公式，一者不美观，二者公式不清晰，三者公式难以自动编号。有过撰写论文经验的朋友都知道，公式一般要居中对齐，并且在公式所在行的最右边需要添加公式编号。博主花了好久结局了这个问题，下面将自己的方法分享出来。 Mathjax和Katex都能够在网页中添加公式，后者是新开发出来的，在速度上据说由于前者，但前者用较多，教程也更多，我选着了前者。 Mat">
+<meta name="twitter:image" content="http://our9hb3to.bkt.clouddn.com/mathjax%E9%85%8D%E7%BD%AE%E6%9B%B4%E6%94%B9true.png">
 
 
 
@@ -141,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="https://mcu1988.github.io/2017/08/19/一个例子理解BP反向传播/undefined-title/"/>
+  <link rel="canonical" href="https://mcu1988.github.io/2017/08/18/在Next主题中使用mathjax书写公式/"/>
 
 
 
 
 
-  <title>一个例子理解BP反向传播 | JasonXu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>在Next主题中使用mathjax书写公式 | JasonXu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -284,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mcu1988.github.io/2017/08/19/一个例子理解BP反向传播/undefined-title/">
+    <link itemprop="mainEntityOfPage" href="https://mcu1988.github.io/2017/08/18/在Next主题中使用mathjax书写公式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JasonXu">
@@ -301,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一个例子理解BP反向传播</h1>
+          <h1 class="post-title" itemprop="name headline">在Next主题中使用mathjax书写公式</h1>
         
 
         <div class="post-meta">
@@ -313,8 +315,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T13:46:32+08:00">
-                2017-08-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-18T13:26:39+08:00">
+                2017-08-18
               </time>
             
 
@@ -324,6 +326,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo优化/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo优化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -331,7 +355,7 @@
 
           
           
-             <span id="/2017/08/19/一个例子理解BP反向传播/undefined-title/" class="leancloud_visitors" data-flag-title="一个例子理解BP反向传播">
+             <span id="/2017/08/18/在Next主题中使用mathjax书写公式/" class="leancloud_visitors" data-flag-title="在Next主题中使用mathjax书写公式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -362,54 +386,66 @@
       
 
       
-        <h2 id="误差递推公式"><a href="#误差递推公式" class="headerlink" title="误差递推公式"></a>误差递推公式</h2><p>文章<a href="https://mcu1988.github.io/2016/12/28/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8E%9F%E7%90%86%E6%8E%A8%E5%AF%BC/undefined-title/">神经网络原理推导</a>中给出了神经网络误差反向传播的公式，</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>写博客有时会遇到添加公式的情况，如果用图片的方式插入公式，一者不美观，二者公式不清晰，三者公式难以自动编号。有过撰写论文经验的朋友都知道，公式一般要居中对齐，并且在公式所在行的最右边需要添加公式编号。博主花了好久结局了这个问题，下面将自己的方法分享出来。</p>
+<p>Mathjax和Katex都能够在网页中添加公式，后者是新开发出来的，在速度上据说由于前者，但前者用较多，教程也更多，我选着了前者。</p>
+<h2 id="MathJax简介"><a href="#MathJax简介" class="headerlink" title="MathJax简介"></a>MathJax简介</h2><p>MathJax是一个跨浏览器JavaScript库，它在Web浏览器中显示数学符号，使用MathML，LaTeX和ASCIIMathML标记。MathJax作为Apache许可证下的开源软件发布。</p>
+<h2 id="使用Mathjax"><a href="#使用Mathjax" class="headerlink" title="使用Mathjax"></a>使用Mathjax</h2><p>有3中方法使用Mathjax：</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>在markdown博客中引入脚本：</p>
+<pre><code>&lt;script 
+    src=&quot;//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
+&lt;/script&gt;
+</code></pre><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>在next主题的配置文件_config.yml中搜索MathJax，将enable:和  per_page: 的选项更改为true，如图：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathjax%E9%85%8D%E7%BD%AE%E6%9B%B4%E6%94%B9true.png" width="100%" height="25%"><br></center>  
 
-$$\eqalign{
-  & {\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma '({z^L}){\delta ^L} = {\text{(}}{{\text{a}}^L}{\text{ - y)}} \odot \sigma '({z^L})  \cr 
-  & {\delta ^l}{\text{ = }}({(\omega _{}^{l + 1})^T}{\delta _{}}^{l + 1}) \odot \sigma '({z^l})  \cr 
-  & \frac{{\partial C}}{{\partial {b_j}^l}}{\text{ = }}{\delta _j}^L  \cr 
-  & \frac{{\partial C}}{{\partial {\omega _{kj}}^l}}{\text{ = }}{\delta _j}^l{a_k}^{l - 1} \cr} $$
+<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>使用hexo-math插件</p>
+<p>安装步骤：</p>
+<ol>
+<li>进入博客所在文件夹，输入命令：npm install hexo-math –save </li>
+<li><p>在hexo的配置文件_config.yml中添加：  </p>
+  <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="attr"> math:</span></div><div class="line"><span class="attr">  engine:</span> <span class="string">'mathjax'</span> <span class="comment"># or 'katex'</span></div><div class="line"><span class="attr">mathjax:</span></div><div class="line"><span class="attr">    src:</span> <span class="string">custom_mathjax_source</span></div><div class="line"><span class="attr">    config:</span></div><div class="line">      <span class="comment"># MathJax config</span></div><div class="line"><span class="attr">  katex:</span></div><div class="line"><span class="attr">    css:</span> <span class="string">custom_css_source</span></div><div class="line"><span class="attr">    js:</span> <span class="string">custom_js_source</span> <span class="comment"># not used</span></div><div class="line"><span class="attr">    config:</span></div><div class="line">      <span class="comment"># KaTeX config</span></div></pre></td></tr></table></figure>
+<p>  Hexo-math可以配置使用’mathjax或者 ‘katex’。 有关Hexo-math的详细信息和安装过程参考<a href="https://github.com/hexojs/hexo-math" target="_blank" rel="external">这里</a>。</p>
+</li>
+</ol>
+<p>以上三种方法中推荐使用第二种。</p>
+<h2 id="公式自动编号"><a href="#公式自动编号" class="headerlink" title="公式自动编号"></a>公式自动编号</h2><p>安装MathJax后，默认只识别行内公式，公式输入格式要求是这样的：\$公式\$或者\\公式\\，而且公式不支持自动编号，这样使用起来不太方便。</p>
+<p>解决办法如下（只针对上面的方法二）：</p>
+<p>找到MathJax配置文件themes/next/layout下的mathjax.swig文件，更改如下（<a href="https://github.com/mcu1988/MathJaxConfiguration" target="_blank" rel="external">完整代码在这里</a>）：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathjax%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7.png" width="100%" height="25%"><br></center>  
 
-<p>上式中${a_j}^l$为输出层激活函数输出，${y_j}$为样本真值，$\sigma ({z_j}^l) = {a_j}^l$,对于输出层误差为</p>
+<p>更改了inlinemath和displaymath增加了autoNumber:”all”，更改后行内公式输入格式：\$公式\$，行间输入公式格式：\$\$公式\$\$，行间公式自动在页面右端添加编号。</p>
+<p>例如：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$$S(x)=\frac&#123;<span class="number">1</span>&#125;&#123;<span class="number">1</span>+&#123; &#123;e&#125;^&#123;-x&#125; &#125; &#125;$$</div></pre></td></tr></table></figure>
+<p>显示如下：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%85%AC%E5%BC%8F%E7%BC%96%E5%8F%B7%E5%9B%BE%E4%BE%8B.png" width="100%" height="25%"><br></center>  
 
-$${\delta _j}^l = ({a_j}^l - {y_j}){a_j}^l(1 - {a_j}^l)$$
+<h2 id="输入公式方法"><a href="#输入公式方法" class="headerlink" title="输入公式方法"></a>输入公式方法</h2><p>先在mathype中写好公式，然后调整mathtype选项，</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathtype%E7%B2%98%E8%B4%B4tex%E8%AE%BE%E7%BD%AE1.png" width="80%" height="25%"><br></center>  
 
-<p>对于输入层，误差为：</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathtype%E7%B2%98%E8%B4%B4tex%E8%AE%BE%E7%BD%AE2.png" width="80%" height="25%"><br></center>  
 
-$${\delta _j}^l{\text{ = }}{z_j}^l(1 - {z_j}^l)\sum\limits_k^{} {\omega _{jk}^{l + 1}{\delta _k}^{l + 1}} $$
-
-<p>参数w和b的更新公式为</p>
-
-$$\eqalign{
-  & \Delta {b_j}^l{\text{ = }}{\delta _j}^l  \cr 
-  & {{b'}_j}^l = {b_j}^l - \eta \Delta {b_j}^l \cr} $$
-
-
-$$\eqalign{
-  & \Delta {w_{kj}}^l{\text{ = }}{a_k}^{l - 1}{\delta _j}^l  \cr 
-  & {{w'}_{kj}}^l = {w_{kj}}^l - \eta \Delta {w_{kj}}^l \cr} $$
-
-<p>下面用一个实例说明此过程。</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84.png" width="80%" height="25%">图1 3层网络结构及参数<br></center>  
-
-<p>参数初始化如下：</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%88%9D%E5%A7%8B%E5%8C%96%E7%BB%93%E6%9E%84%E5%8F%82%E6%95%B0.png" width="80%" height="25%">图2 参数初始化<br></center>  
-
-<p>网络正向传递结果如下：</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/%E5%89%8D%E5%90%91%E4%BC%A0%E9%80%92.png" width="80%" height="25%">图3 前向传递过程<br></center>  
-
-<p>误差反向传播如下：</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E4%BE%8B%E5%AD%90%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E8%AF%AF%E5%B7%AE.png" width="80%" height="25%">图4 反向传播误差计算<br></center>  
-
-<p>节点6是输出层的节点，应用公式（2）直接求解，节点4和5是应用公式3求解。<br>参数w和b更新如下：</p>
-<center><br><img src="http://our9hb3to.bkt.clouddn.com/BP%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0.png" width="80%" height="25%">图5 参数更新过程<br></center> 
-
-<p>b依据公式（4），w依据公式（5）求解。</p>
-<p>反向传播算法在图4中的体现为，隐含层节点4和5的误差根据输出层节点6的误差递推而来。如果网络层数超过3层，误差还是依据公式（3）一层层往上递推。</p>
-<p>本文图片来源于麦子学院机器学习神经网络课件。</p>
+<p>粘贴公式到markdown中，建议使用<a href="https://www.zybuluo.com/mdeditor#852900" target="_blank" rel="external">Cmd Markdown</a>，可以预览公式。</p>
+<h2 id="一些bug"><a href="#一些bug" class="headerlink" title="一些bug"></a>一些bug</h2><ol>
+<li><p>公式中出现 {{ 和 }} 时hexo报错，解决办法是在两个相连的大括号中添加空格，例如： 将{{修改为{空格{  或者更改为：{ % raw % }  {{ { % endraw % } 。参考hexo官方的说明<a href="https://hexo.io/zh-cn/docs/troubleshooting.html" target="_blank" rel="external">泄露（Escape）内容</a><br>一个最简单的方法如下：</p>
+ <figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;%<span class="built_in"> raw </span>%&#125;</div><div class="line">公式</div><div class="line">&#123;% endraw %&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>mathtype中一些特殊的符号在MathJax中不显示，如</p>
+<center><br><img src="http://our9hb3to.bkt.clouddn.com/mathtype%E4%B8%8D%E8%AF%86%E5%88%AB%E7%9A%84%E7%AC%A6%E5%8F%B7.png" width="20%" height="25%"><br></center>  
+</li>
+<li><p>复杂的公式中如果变量下表包含多个字母时建议用空格隔开，否则公式不显示。</p>
+</li>
+</ol>
+<h2 id="关于CDN"><a href="#关于CDN" class="headerlink" title="关于CDN"></a>关于CDN</h2><p>MathJax宣布在2017.4.30关闭了CDN，并提供了其它的CDN，参考<a href="https://www.mathjax.org/cdn-shutting-down/" target="_blank" rel="external">这里</a></p>
+<p>更改方法如下：</p>
+<p>找到MathJax配置文件mathjax.swig，把</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">async</span></span></div><div class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js? ?config=TeX-AMS-MML_HTMLorMML "</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>更改为</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">async</span></span></div><div class="line"><span class="tag">	<span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>另外：如果CDN使用的是<a href="https://cdn.mathjax.org/mathjax/latest/" target="_blank" rel="external">https://cdn.mathjax.org/mathjax/latest/</a> 建议更改为最新版本的CDN: <a href="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" target="_blank" rel="external">https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML</a></p>
+<h2 id="相关下载"><a href="#相关下载" class="headerlink" title="相关下载"></a>相关下载</h2><p><a href="https://github.com/mcu1988/MathJaxConfiguration" target="_blank" rel="external">MathJax配置文件</a></p>
 <p>参考：</p>
 <ol>
-<li><a href="http://www.maiziedu.com/course/373/" target="_blank" rel="external">麦子学院机器学习神经网络课件部分</a></li>
+<li><a href="https://www.linpx.com/p/front-end-integration-mathjaxjs-configuration.html" target="_blank" rel="external">https://www.linpx.com/p/front-end-integration-mathjaxjs-configuration.html</a></li>
+<li><a href="http://docs.mathjax.org/en/latest/tex.html?highlight=autonumber" target="_blank" rel="external">http://docs.mathjax.org/en/latest/tex.html?highlight=autonumber</a></li>
 </ol>
 
       
@@ -426,6 +462,12 @@ $$\eqalign{
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/mathjax/" rel="tag"># mathjax</a>
+          
+        </div>
+      
 
       
       
@@ -435,8 +477,8 @@ $$\eqalign{
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/18/在Next主题中使用mathjax书写公式/undefined-title/" rel="next" title="在Next主题中使用mathjax书写公式">
-                <i class="fa fa-chevron-left"></i> 在Next主题中使用mathjax书写公式
+              <a href="/2017/07/31/Test/" rel="next" title="神经网络Python实现">
+                <i class="fa fa-chevron-left"></i> 神经网络Python实现
               </a>
             
           </div>
@@ -444,6 +486,10 @@ $$\eqalign{
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/19/一个例子理解BP反向传播/" rel="prev" title="一个例子理解BP反向传播">
+                一个例子理解BP反向传播 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -608,7 +654,7 @@ $$\eqalign{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#误差递推公式"><span class="nav-number">1.</span> <span class="nav-text">误差递推公式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MathJax简介"><span class="nav-number">2.</span> <span class="nav-text">MathJax简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Mathjax"><span class="nav-number">3.</span> <span class="nav-text">使用Mathjax</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">3.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">3.2.</span> <span class="nav-text">方法二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法三"><span class="nav-number">3.3.</span> <span class="nav-text">方法三</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#公式自动编号"><span class="nav-number">4.</span> <span class="nav-text">公式自动编号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入公式方法"><span class="nav-number">5.</span> <span class="nav-text">输入公式方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些bug"><span class="nav-number">6.</span> <span class="nav-text">一些bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于CDN"><span class="nav-number">7.</span> <span class="nav-text">关于CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关下载"><span class="nav-number">8.</span> <span class="nav-text">相关下载</span></a></li></ol></div>
             
 
           </div>
